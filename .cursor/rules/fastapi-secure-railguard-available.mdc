@@ -1,5 +1,5 @@
 ---
-description: Secure development rule for FastAPI-based Python projects, focused on API structure, authentication, and context-aware server logic. Input validation is enforced globally via input-validation.mdc.
+description: Secure development rule for FastAPI-based Python projects, focused on API structure, authentication, and context-aware server logic. Input validation is enforced globally via railguard-input-validation.mdc.
 globs: ["**/app/**.py", "**/api/**.py", "**/routes/**.py"]
 alwaysApply: true
 ---
@@ -14,7 +14,7 @@ This rule provides secure-by-default coding conventions for FastAPI projects, in
 - Logging, dependency injection, and context reasoning
 
 Input validation (e.g. pydantic, zod-like schemas, sanitization, type safety) is enforced globally via:
-> `.cursor/rules/input-validation.mdc`  
+> `.cursor/rules/railguard-input-validation.mdc`  
 > (This rule uses the RAILGUARD Framework for reflective, behavioral AI reasoning.)
 
 ---
@@ -73,7 +73,7 @@ Input validation (e.g. pydantic, zod-like schemas, sanitization, type safety) is
 
 All input validation, sanitization, and reflective enforcement of secure behaviors is handled by:
 
-> `.cursor/rules/input-validation.mdc`
+> `.cursor/rules/railguard-input-validation.mdc`
 
 This includes:
 - Type enforcement
