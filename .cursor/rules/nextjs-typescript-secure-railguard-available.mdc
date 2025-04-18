@@ -14,7 +14,7 @@ This rule guides AI to generate secure and modern fullstack code using:
 - Server/client separation
 - Component modularity and security-conscious practices
 
-Note: For all input handling, validation, and sanitation logic — refer to `.cursor/rules/input-validation.mdc`, which contains full RAILGUARD enforcement.
+Note: For all input handling, validation, and sanitation logic — refer to `.cursor/rules/railguard-input-validation.mdc`, which contains full RAILGUARD enforcement.
 
 ---
 
@@ -72,7 +72,7 @@ All runtime input validation, including:
 
 ...should be handled by the global rule:
 
-> `.cursor/rules/input-validation.mdc`  
+> `.cursor/rules/railguard-input-validation.mdc`  
 > _(based on the RAILGUARD security reasoning framework)_
 
 This file ensures secure parsing with `zod`, structured reasoning steps, and auditability for all user-facing input.
