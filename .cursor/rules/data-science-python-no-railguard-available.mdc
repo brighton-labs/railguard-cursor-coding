@@ -4,7 +4,7 @@ globs: ["**/*.ipynb", "**/*.py"]
 alwaysApply: true
 ---
 
-# R: Reflective Objective
+# R: Risk First
 - The objective is to generate privacy-preserving, auditable data science code that treats all datasets as potentially untrusted.
 - AI-generated workflows should prevent PII leakage, unsafe previews, over-permissive exports, or the use of risky dynamic evaluation functions.
 - Output code must consider that notebooks may be shared publicly or reviewed externally.
