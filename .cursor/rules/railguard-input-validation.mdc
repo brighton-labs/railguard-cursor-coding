@@ -1,6 +1,6 @@
 ---
 description: [Briefly describe the purpose of this rule – Insert brief description of the secure behavior or threat mitigated]
-globs: ["**/*.js", "**/*.ts", "**/*.c", "**/*.sh", "**/*.bash", "**/*.go", "**/*.rs", "**/*.py"]  
+globs: ["**/*"]  
 alwaysApply: true
 ---
 
