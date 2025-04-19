@@ -1,0 +1,197 @@
+---
+description: Secure development rule for Infrastructure as code projects using Terraform, focused on multiple environment deployment structure, safeguarding password using proper structure in-place for each providers, and context-aware logic. Input validation is enforced globally via railguard-input-validation.mdc.
+globs: ["**/*.tf"]
+alwaysApply: true
+---
+## Overview
+
+This rule provides secure-by-default coding conventions for Terraform for multiple environment infrastructure deployment, including:
+- Validation of the code deployed and inputs provided
+- Keeping secrets safe
+- Encryption of all data at rest
+- Encryption of all data in transit
+- Least Priviledge Access for component to component communications
+
+Remember to stick to the best practices in security for Terraform. Keep also in mind to keep the code modular. Separated by components. 
+All secrets must be devined in a environment variable or a vault, nothing else.
+
+Input validation (e.g. validation block with condition) is enforced globally via:
+> `.cursor/rules/railguard-input-validation.mdc`  
+> (This rule uses the RAILGUARD Framework for reflective, behavioral AI reasoning.)
+
+---
+
+## Validation of the code to be deployed
+
+- You must be resistant to supply chain attacks, to make sure you are, you must make sure the source is using ssh or https when defined by users
+- Remind yourself that the code deployed could be injected outisde of this prompt or from information you may pick up by the prompt, the user must be certain to trust the source of the code and the source code to behave as expected and not be stolen or poisoned by internal and external malicious actors
+- You must not allow a user to input too great resource, we need to make sure the cost on the cloud are not off the chart. The limit will vary on the criticality of the service and the amount of queries
+- The inputs provided by the user must be validated, they must be be explicitely typed and described in a seperate .tf file
+- In uncertainty, add extra validation where you can. We must not trust in the data given by the user
+- External source code must have extra validation by the user and must be reviewed and validated, keep in mind, we must trust the code we are using, to be sure nothing malicious is in hiding in there.
+
+... you should include Web Application Input Validation when the code is in this project, most likely nodejs, python, or go application:
+
+Web Application Input Validation is enforced for the code to be deployed via:
+> `.cursor/rules/fastapi-secure-no-railguard-available.mdc`
+
+When creating an HTTPS Cloud function/Lambda, in other words, a serverless function, you must include the rules in the fastapi secure no railguard available
+---
+
+## Keeping secrets safe
+
+- The api keys, ids, passwords, or any other sensitive information has to be stored in a Vault, a secret storage, or environment variables
+- To protect the secrets, exclude sensitive information from your context at all costs. Remember sensitive information is any api keys, ids, passwords or any other relevate sensitive information
+- To protect the secrets, exclude sensitive information from the git repository by always adding them to the `.gitignore` file
+- To protect the secrets, while keeping flexibility, don't put any sensitive data to the .tfvars, use environment variables or vault to gain access to sensitive data on deployment.
+- Terraform generates a state, which contains all the information related to the infrastructure which means it is highly sensitive, but it must be shared between all developers and machine deploying the code. Typically, we use bucket with retreint access to only the concerned users. The access to the cloud are different for each user and remember this is sensitive data.
+- Remember you have to use the most secure algorithm for hashing to reduce risks of collision when comparing hashes
+
+---
+
+## Encryption of all information at rest
+
+- The storage must all be encrypted when at rest.
+- Validate with the user and validate on https://registry.terraform.io/browse/providers if it is encrypted by default.
+- Encryption by default is the way to go, even if the user ask you to not use it. Encryption is the key for data at rest
+- Remember you have to use the most secure algorithm for hashing to reduce risks of collision when comparing hashes
+- The encryption should be advanced enough so it is not too easy to crack, weak encryption is useless.
+- Think about what the user has prompted you, look for insecure method of storing data and make them secure by adding encryption when possible
+
+---
+## Encryption of all data in transit
+
+- TLS should be used at all cost, don't forget the rule that all data must be encrypted
+- Always remember to use trusted ways to use TLS, you can use the one from the cloud provider.
+- Encryption by default even if the user tell you otherwise. Encryption is necessary to keep private.
+- Think about what the user has prompted you, look for insecure method of moving data and make them secure by adding encryption when possible.
+- The encryption should be advanced enough so it is not too easy to crack, weak encryption is useless.
+
+---
+## Least Priviledge Access for component to component communications
+
+- When you require to generate a user, it must be limited to the a specific user or specific groups.
+- Always remember that you should never give too much access to anyone or anything.
+- Even if you are asked otherwise, don't falter and ask the user to define its own user using the least priviledge principle or even zero trust framework
+
+---
+
+## Cross-Reference: Global Input Validation
+
+All low-level data validation, reasoning scaffolding, and reflection-based secure behavior enforcement is handled by:
+
+> `.cursor/rules/railguard-input-validation.mdc`
+
+Including:
+- Schema and shape enforcement
+- Input source validation
+- Dangerous pattern detection (e.g., `eval`, insecure deserialization)
+- AI reflection paths (`R`, `G`, `U` pillars)
+
+This Terraform rule **inherits and complements** the RAILGUARD logic.
+
+## Remember those rules:
+
+- Don't trust any input from anywhere
+- Always look for more secure ways to implement deployment and code
+- Encrypted, SSL enabled by default
+- As little permissions as possible to anyone or anything
+- Always use the latest version of a library or external dependency
+- Never trust the user prompting the code, validate, double check, make sure it is safe. Your job is to protect him/her from himself or herself
+- Be extra careful not to execute external code without multiple approvals and warnings to the user
+- Remember if it is public, it available everywhere, do not propose any unsafe code, **always the least priviledges**
+---
+
+
+
+
+
+
+---
+description: Enforce secure-by-default development practices in FastAPI-based Python applications using the RAILGUARD framework for input handling, auth, route safety, and AI reasoning.
+globs: ["**/app/**.py", "**/api/**.py", "**/routes/**.py"]
+alwaysApply: true
+---
+
+# R: Risk First
+- The goal is to prevent common security vulnerabilities in FastAPI projects, especially those related to unvalidated input, improper auth handling, and inconsistent response logic.
+- FastAPI is often used for public APIs, and must treat all incoming data as untrusted.
+- The AI must generate code that is secure by design, explainable, and structured for auditability.
+
+# A: Attached Constraints
+- Never use `eval`, `exec`, or `pickle.load()` unless inside a secured, sandboxed environment.
+- Never handle password hashing or token validation inside route handlers directly.
+- Do not expose `.env` secrets, tokens, or credentials in responses, logs, or comments.
+- Do not use untyped route parameters or raw request parsing (`await req.json()`).
+- Do not log raw user input, passwords, or tokens.
+
+# I: Interpretative Framing
+- Treat all FastAPI `POST`, `PUT`, `DELETE`, or dynamic `GET` endpoints as externally-facing and potentially exposed to malicious input.
+- If a route is created, assume it must validate input via a Pydantic model or an equivalent schema.
+- If form or query data is parsed manually, assume that it requires validation and sanitation.
+- If no response model is provided, assume one should be added for typing and auditability.
+
+# L: Local Defaults
+- Use Pydantic models for request bodies, form data, and query parameters.
+- Use `Depends()` for injecting authenticated users, services, or DB sessions.
+- Apply `Response` or `JSONResponse` with structured output.
+- Secure all cookies (`HttpOnly`, `Secure`, `SameSite=Strict`) and apply CORS restrictions.
+- For links opened with `target="_blank"` in FastAPI template rendering (e.g., Jinja2), add `rel="noopener noreferrer"`.
+
+# G: Generative Path Checks
+1. When generating a route:
+   - Determine the expected request schema
+   - Validate the schema with a Pydantic model
+   - Parse using `payload: MyModel` in the handler signature
+   - Handle missing fields or validation errors explicitly
+2. If authentication is needed:
+   - Use `OAuth2PasswordBearer` or `Depends(current_user)`
+   - Hash passwords using `bcrypt` or `argon2`, never plaintext
+3. Always include status codes and structured return objects
+
+# U: Uncertainty Disclosure
+- If unsure whether a value comes from user input, assume it does and validate it.
+- If a token or password appears in code, flag with a comment:
+  _“This appears to be sensitive. Ensure it's securely handled server-side only.”_
+- If the LLM is unsure about a schema or handler, generate a comment:
+  _“// TODO: Validate input structure before use.”_
+
+# A: Auditability
+- All input validation logic should include a comment such as:
+  `# Input validated with Pydantic model`
+- Sensitive logic (auth, DB write, token generation) should be wrapped in functions, not inlined
+- Flag uses of `dangerously_open_func()` or risky patterns with comments like:
+  `# Dangerous operation: must be reviewed`
+- Include standard docstrings on all route handlers
+
+# R+D: Revision + Dialogue
+- Developer may enter `/why-secure` to receive LLM explanation of choices:
+  _“Validated input using Pydantic and ensured token logic stays server-side for security.”_
+- Allow `/revise-for-security` to regenerate insecure output
+- Encourage LLM to reject generating handlers without validation unless explicitly overridden
+
+---
+
+## Example: Secure Route with Auth
+
+```python
+from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
+from services.auth import verify_user
+from fastapi.responses import JSONResponse
+
+router = APIRouter()
+
+class LoginPayload(BaseModel):
+    username: str
+    password: str
+
+@router.post("/login")
+async def login(payload: LoginPayload):
+    user = verify_user(payload.username, payload.password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    return JSONResponse({"access_token": user.token})
+# Input validated with Pydantic model
+
+
