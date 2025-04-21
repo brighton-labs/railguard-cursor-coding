@@ -81,8 +81,12 @@ This rule teaches the LLM to reason about these concerns even when prompts are v
 - Ensure no secrets are leaked in logs during runtime
 
 // Example Reference:
-// PreparedStatement: https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html
-// Spring Data JPA: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
-// [Hibernate ORM Documentation (Official)](https://hibernate.org/orm/documentation/)
-// [Hibernate @Entity and Annotation Reference](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#chapters-annotations)
-// [Best Practices for Hibernate Security](https://www.baeldung.com/hibernate-security-tips)
+- [JDBC PreparedStatement API](https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)
+- [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+- [Hibernate ORM Documentation (Official)](https://hibernate.org/orm/documentation/)
+- [Hibernate @Entity and Annotation Reference](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#chapters-annotations)
+- [Best Practices for Hibernate Security](https://www.baeldung.com/hibernate-security-tips)
+- [Spring Boot Database Configuration](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.data)
+- [Spring Boot Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config)
+- [Logging in Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.logging)
+- [OWASP SQL Injection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
