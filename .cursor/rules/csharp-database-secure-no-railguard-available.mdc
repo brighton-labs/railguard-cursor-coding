@@ -79,5 +79,9 @@ This rule prepares the model to reason securely about database operations, regar
 
 // References:
 - [SqlCommand.Parameters](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.parameters)
-- [EF Core Docs](https://learn.microsoft.com/en-us/ef/core/)
-- [Configuration in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-6.0)
+- [Entity Framework Core Documentation](https://learn.microsoft.com/en-us/ef/core/)
+- [ASP.NET Core Configuration](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/)
+- [ASP.NET Core User Secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets)
+- [Logging in .NET with Serilog](https://serilog.net/)
+- [EF Core Transactions](https://learn.microsoft.com/en-us/ef/core/saving/transactions)
+- [Secure Coding Guidelines (OWASP)](https://cheatsheetseries.owasp.org/)
