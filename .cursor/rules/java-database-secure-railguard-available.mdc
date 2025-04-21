@@ -72,6 +72,18 @@ This rule assumes that any dynamic values passed to queries or injected via APIs
 
 ---
 
+## Java References
+- [JDBC PreparedStatement API](https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)
+- [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+- [Hibernate ORM Documentation (Official)](https://hibernate.org/orm/documentation/)
+- [Hibernate @Entity and Annotation Reference](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#chapters-annotations)
+- [Spring Boot Security](https://docs.spring.io/spring-boot/how-to/security.html#page-title)
+- [Spring Boot Environment Variables](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config)
+- [Logging in Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.logging)
+- [OWASP SQL Injection Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+
+---
+
 ## Dev Commands
 - `/revise-for-db-safety` — Refactor raw queries or unsafe JDBC patterns
 - `/secure-db-config` — Generate a secure Spring Boot DB configuration block
